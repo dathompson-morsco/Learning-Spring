@@ -16,4 +16,16 @@ public class Book {
         this.author = author;
         this.numPages = numPages;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public Integer getNumPages() {
+        return numPages;
+    }
 }

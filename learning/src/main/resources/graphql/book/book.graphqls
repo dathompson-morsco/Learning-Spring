@@ -4,3 +4,9 @@ type Book {
     author: String!,
     numPages: Int!
 }
+
+type BookInput{
+    name: String!,
+    author: String!,
+    numPages: Int!
+}
