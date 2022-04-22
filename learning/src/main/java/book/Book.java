@@ -16,6 +16,9 @@ public class Book {
         this.author = author;
         this.numPages = numPages;
     }
+    public UUID getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

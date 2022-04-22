@@ -9,15 +9,17 @@ import org.springframework.stereotype.Component;
 import book.Book;
 import book.BookInput;
 import dao.BookDao;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 
 @Component
-public class BookResolver implements GraphQLQueryResolver{
+public class BookResolver implements GraphQLQueryResolver, GraphQLMutationResolver{
 
     private final BookDao bookDao;
 
     public BookResolver(BookDao bookDao){
         this.bookDao = bookDao;
+        bookDao.initDB();
     }
 
     // Create a Logger
@@ -25,15 +27,17 @@ public class BookResolver implements GraphQLQueryResolver{
     = Logger.getLogger("BookResolver");
 
 
-    public Book book(UUID id) {
+    public Book bookById(UUID id) {
         logger.info("Retrieving book id: " + id.toString());
+        logger.info("Retrieved: " + bookDao.bookById(id).toString());
 
-        return new Book(id, "bookName", "Author", 250);
+        return bookDao.bookById(id);
     }
 
-    public Integer insertBook(BookInput bookInput){
-        bookDao.insertBook(bookInput);
-        return 1;
+    public Book insertBook(BookInput input){
+        BookInput bookInput = new BookInput(input.getName(),input.getAuthor(),input.getNumPages());
+        Book newBook = bookDao.insertBook(bookInput);
+        return newBook;
     }
 
     public List<Book> allBooks(){

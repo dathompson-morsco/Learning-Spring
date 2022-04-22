@@ -1,4 +1,8 @@
 type Query {
-    book(id: ID): Book
-    insertBook(bookInput: BookInput): Int!
+    bookById(id: ID): Book
+    allBooks: [Book]!
+    }
+
+type Mutation {
+    insertBook(input: BookInput!): Book!
     }

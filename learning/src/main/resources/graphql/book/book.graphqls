@@ -5,7 +5,7 @@ type Book {
     numPages: Int!
 }
 
-type BookInput{
+input BookInput{
     name: String!,
     author: String!,
     numPages: Int!

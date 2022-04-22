@@ -7,10 +7,17 @@ import book.Book;
 import book.BookInput;
 
 public interface BookDao {
-    
-    int insertBook(UUID id, BookInput bookInput);
 
-    default int insertBook(BookInput bookInput){
+    void initDB();
+
+    default Book bookById(UUID id){
+        return bookById(id);
+    };
+
+    
+    Book insertBook(UUID id, BookInput bookInput);
+
+    default Book insertBook(BookInput bookInput){
         UUID id = UUID.randomUUID();
         return insertBook(id, bookInput);
     }
