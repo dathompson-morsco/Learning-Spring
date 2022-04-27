@@ -2,6 +2,7 @@ package learning.io.learning.resolver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import org.springframework.stereotype.Repository;
 
@@ -50,14 +51,11 @@ public class FakeBookDataAccessService implements BookDao{
 
     @Override
     public Book bookById(UUID id) {
-        /// using a map would speed this up
-        for (Book book : DB)
-            {
-                if(book.getId() == id){
-                    return book;
-                }
-            }
-        return null;
+        Book result = DB.stream().
+        filter(x -> id.equals(x.getId())).
+        findAny().
+        orElse(null);
+        return result;
     }
     
 }
