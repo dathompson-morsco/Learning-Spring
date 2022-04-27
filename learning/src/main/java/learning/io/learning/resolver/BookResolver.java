@@ -29,8 +29,7 @@ public class BookResolver implements GraphQLQueryResolver, GraphQLMutationResolv
 
     public Book bookById(UUID id) {
         logger.info("Retrieving book id: " + id.toString());
-        logger.info("Retrieved: " + bookDao.bookById(id).toString());
-
+        
         return bookDao.bookById(id);
     }
 
